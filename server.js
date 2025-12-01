@@ -17,7 +17,7 @@ app.use("/uploads", express.static("uploads"));
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://clothing-ecommerce-frontend-wnqf.vercel.app"
+  "https://clothing-ecommerce-frontend-odd1bss2d-ram5534s-projects.vercel.app/"
 ];
 
 app.use(
