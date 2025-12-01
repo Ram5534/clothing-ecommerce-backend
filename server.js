@@ -17,9 +17,7 @@ app.use("/uploads", express.static("uploads"));
 // Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://clothing-ecommerce-frontend-wnqf.vercel.app",
-  "https://clothing-ecommerce-frontend-4kti.vercel.app",
-  "https://clothing-ecommerce-frontend-odd1bss2d-ram5534s-projects.vercel.app"
+  "https://clothing-ecommerce-frontend-4kti.vercel.app"
 ];
 
 // CORS options
@@ -33,7 +31,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"],
+  allowedHeaders: ["Content-Type","Authorization","Cache-Control"],
 };
 
 // Apply CORS globally
