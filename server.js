@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
+
 const allowedOrigins = [
   "http://localhost:5173",
   "https://clothing-ecommerce-frontend-wnqf.vercel.app"
@@ -21,9 +22,12 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
+    origin: (origin, callback) => {
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
+
+      const allowed = allowedOrigins.some((o) => origin.startsWith(o));
+
+      if (allowed) return callback(null, true);
       return callback(new Error("Not allowed by CORS"), false);
     },
     credentials: true,
