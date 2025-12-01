@@ -9,9 +9,6 @@ connectDB();
 
 const app = express();
 
-// ------------------
-// CORS OPTIONS (define FIRST !!!)
-// ------------------
 const corsOptions = {
   origin: [
     "http://localhost:5173",
@@ -29,20 +26,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
 
-// Apply CORS (NOW works)
+// Enable CORS
 app.use(cors(corsOptions));
 
-// Handle preflight for ALL routes
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Origin", req.headers.origin);
-    res.header("Access-Control-Allow-Methods", corsOptions.methods.join(","));
-    res.header("Access-Control-Allow-Headers", corsOptions.allowedHeaders.join(","));
-    res.header("Access-Control-Allow-Credentials", "true");
-    return res.sendStatus(200);
-  }
-  next();
-});
 
 // ------------------
 // Routes
@@ -53,9 +39,9 @@ app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 
 // Health check
-app.get("/", (req, res) => res.send("Welcome to E-Commerce Website"));
+app.get("/", (req, res) => res.send("Welcome"));
 
-// Global Error Handler
+// Global Error
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({ message: err.message || "Server Error" });
