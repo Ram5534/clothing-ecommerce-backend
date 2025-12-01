@@ -25,9 +25,9 @@ app.use(
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
 
-      const allowed = allowedOrigins.some((o) => origin.startsWith(o));
-
+      const allowed = allowedOrigins.some(o => origin.startsWith(o));
       if (allowed) return callback(null, true);
+
       return callback(new Error("Not allowed by CORS"), false);
     },
     credentials: true,
