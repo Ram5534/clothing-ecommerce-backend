@@ -14,27 +14,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
 
-// Allowed frontend origins
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://clothing-ecommerce-frontend-4kti-3trjfk2vp-ram5534s-projects.vercel.app"
-];
-
-// CORS options
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: [
+    "http://localhost:5173",
+    "https://clothing-ecommerce-frontend-4kti-3trjfk2vp-ram5534s-projects.vercel.app"
+  ],
   credentials: true,
-  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization","Cache-Control"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
 };
 
-// Apply CORS globally
 app.use(cors(corsOptions));
 
 // API Routes
