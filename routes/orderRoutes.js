@@ -3,7 +3,7 @@ const router = express.Router();
 const { requireAuth } = require("../middleware/authMiddleware");
 const { createOrder, getOrderById } = require("../controllers/orderController");
 
-router.post("/add-order",  createOrder);
+router.post("/add-orders",  createOrder);
 router.get("/:id",  getOrderById);
 
 module.exports = router;
